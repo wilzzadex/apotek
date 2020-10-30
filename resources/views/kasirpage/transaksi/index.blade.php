@@ -176,7 +176,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -187,7 +187,7 @@
             <div class="form-group">
               <input type="hidden" readonly name="no_invoice" value="{{$no_invoice}}">
               <label for="exampleInputEmail1">Obat</label><br>
-              <select name="obat_id" id="obat" style="width: 450px;" class="form-control">
+              <select name="obat_id" id="obat" style="width: 100%;height:100%" class="form-control">
                 <option value="">-- PILIH OBAT --</option>
                 @foreach ($obat as $obat)
                     <option value="{{$obat->id}}">{{ $obat->nama_obat }} - {{ $obat->kode_obat }}</option>
@@ -199,9 +199,9 @@
                 <label>Jumlah</label>
                 <input type="number" onkeyup="hitungJumlah(this)" name="jml_satuan" id="jml_satuan" class="form-control" required>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6" style="display: none;" id="col_satuan">
                 <label>Satuan</label><br>
-                <select name="satuan_id" style="width: 200px" class="form-control" id="satuan" required>
+                <select name="satuan_id" style="width: 100%" class="form-control" id="satuan" required>
                   <option value="">- Pilih Satuan -</option>
                   @foreach ($box as $satuan)
                       <option value="{{ $satuan->id }}" data-jumlah="{{ $satuan->jumlah }}">{{ $satuan->nama }} - isi {{ $satuan->jumlah }}</option>
@@ -211,7 +211,7 @@
               </div>
               
             </div>
-            <button type="submit" class="btn-sm btn btn-primary">Tambhakan</button>
+            <button type="submit" class="btn-sm btn btn-primary">Tambahkan</button>
           </form>
         </div>
       </div>
@@ -243,11 +243,15 @@ function hitung(){
    
 }
 
-  // function hitungJumlah(obj){
-  //   var jml_sat = $('#jml_satuan').find(':selected').attr('data-jumlah');
-  //   console.log(jml_sat);
+  function hitungJumlah(obj){
+    document.getElementById('col_satuan').style.display = ''
+    var isi = $(obj).val();
+    if(isi == ''){
+      document.getElementById('col_satuan').style.display = 'none'
+      $('#satuan').val('').change()
+    }
 
-  // }
+  }
 
 function updateHarga(){
     // alert('tes');
@@ -272,12 +276,12 @@ function updateHarga(){
 
 $(document).ready(function(){
   $("#obat").select2({
-    dropdownParent: $('#exampleModal'),
+    // dropdownParent: $('#exampleModal'),
     placeholder: 'Cari Obat / Kode Obat..'
 
   });
   $("#satuan").select2({
-    dropdownParent: $('#exampleModal'),
+    // dropdownParent: $('#exampleModal'),
     placeholder: 'Satuan..'
 
   });

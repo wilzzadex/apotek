@@ -22,6 +22,17 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .select2-selection__rendered {
+        line-height: 31px !important;
+    }
+    .select2-container .select2-selection--single {
+        height: 38px !important;
+    }
+    .select2-selection__arrow {
+        height: 34px !important;
+    }
+  </style>
 </head>
 <body class="hold-transition layout-top-nav">
 <!-- Site wrapper -->
